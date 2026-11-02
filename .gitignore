@@ -5,3 +5,8 @@ data/
 # Office / Power BI temp files
 ~$*
 *.tmp
+
+# Python
+__pycache__/
+.venv/
+.env
