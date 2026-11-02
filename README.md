@@ -6,10 +6,12 @@ The goal is not to explore data, but to answer concrete business questions a man
 
 **One pipeline, end to end:** raw CSV → SQL Server (cleaning, views, stored procedures) → Excel report, automated with Python → Power BI dashboard → executive presentation with recommendations.
 
-| If you're hiring for... | Look at |
+## Project structure
+
+| Area | Where |
 |---|---|
-| **Database roles** (DB Developer, Analista Programador) | [`sql/`](sql/): schema with keys, views, stored procedures, functions, triggers, indexing, backup; [`python/`](python/): report automation |
-| **Data Analyst / BI roles** | [`excel/`](excel/), [`powerbi/`](powerbi/), [`presentation/`](presentation/) and the [Conclusions](#conclusions) |
+| **Database development** | [`sql/`](sql/): schema with keys, views, stored procedures, functions, triggers, indexing, backup · [`python/`](python/): report automation |
+| **Data analysis & BI** | [`excel/`](excel/), [`powerbi/`](powerbi/), [`presentation/`](presentation/) and [Conclusions](#conclusions) |
 
 ## Business questions
 
