@@ -69,8 +69,10 @@ Tarjetas en inglés, como conocimiento general (no atado al proyecto), con tag `
 
 - **Qué es:** análisis de ventas de un e-commerce con el dataset público de Olist (Brasil, 2016-2018, 9 CSV en Kaggle).
 - **Vacantes que cubre:** Data Analyst Jr, BI Analyst, Analista Programador, Desarrollador de BD.
-- **Stack:** SQL Server (T-SQL, vistas, procedimientos almacenados), SSMS, Excel avanzado (Power Query, tablas dinámicas, conectado a SQL Server), Python (automatización con `pyodbc` + `openpyxl`, sin pandas), Power BI (relaciones y DAX).
-- **Base del stack:** un analista de datos de un banco en RD dijo que usan Python, SQL (consultas avanzadas), Excel avanzado, Power BI, SaaS corporativo y un software propietario ("Aspec", no identificado). En el banco, Python se usa para automatizar: ejecutar SQL y generar reportes, no pandas.
+- **Stack:** SQL Server (T-SQL, vistas, procedimientos, funciones, triggers), SSMS, Excel avanzado (Power Query, tablas dinámicas, Power Pivot, conectado a SQL Server), Python (`pyodbc` + pandas: `read_sql`, `to_excel`), Power BI (relaciones y DAX).
+- **Base del stack:** un analista de datos de un banco en RD dijo que usan Python, SQL avanzado, Excel avanzado, Power BI, SaaS corporativo y un software propietario. En el banco Python se usa para automatizar (ejecutar SQL y generar reportes) sin pandas. Decisión: conexión con `pyodbc` (lo del banco) + pandas encima (`read_sql` usa esa conexión), porque muchas vacantes piden pandas.
+- **Ajustes por auditoría de vacantes reales de RD:** limpieza de datos, estadística descriptiva, KPIs comerciales, ventas contra meta, pronóstico simple, presentación ejecutiva, y lo mínimo de BD (backup, índice, usuario de solo lectura, función, trigger). **No se agregan más ajustes**; lo nuevo va a otro proyecto.
+- **Privacidad:** el repo es público. Rechazos, CVs y vacantes van solo en los docs privados del proyecto de Claude, nunca aquí.
 - **Por qué SQL Server:** bancos y gobierno en RD usan SQL Server + Power BI.
 - **Un solo repo, una sola historia:** desarrollador de BD (tablas, vistas, procedimientos) → analista (Excel, Power BI, conclusiones) → jefe (decisión). Cada reclutador va a su carpeta: `sql/` para vacantes de BD; `excel/`, `powerbi/` y conclusiones para Data Analyst.
 - **Diferencia con backend:** aquí se resuelve un problema de negocio. Flujo: **pregunta → dato → decisión**.
@@ -87,16 +89,20 @@ Tarjetas en inglés, como conocimiento general (no atado al proyecto), con tag `
 
 ### Fases
 
+🟢 = esencial para junior (lo piden casi todas las vacantes) · 🔵 = plus (diferencia o cubre vacantes de BD)
+
 | Fase | Qué | Termina cuando |
 |---|---|---|
-| 0 | Problema y fases | Preguntas y plan en `docs/phase-0.md` |
-| 1 | Base de datos en SQL Server: tablas con PK/FK, carga de los 9 CSV, validación | Los conteos de filas cuadran con los CSV y las FK no fallan |
-| 2 | Una vista T-SQL por pregunta (CTE, funciones de ventana) | Cada pregunta tiene su vista + respuesta en una frase |
-| 3 | Procedimientos almacenados con parámetros y `TRY/CATCH` | Se puede pedir un reporte por rango de fechas o estado con `EXEC` |
-| 4 | Reporte en Excel avanzado conectado a las vistas (Power Query, tablas dinámicas, fórmulas) | El gerente abre el Excel, pulsa "Actualizar" y ve datos al día |
-| 5 | Automatización con Python: script que ejecuta un procedimiento y genera el reporte en Excel | Un solo comando produce el reporte sin abrir SSMS ni Excel |
-| 6 | Dashboard en Power BI conectado a las vistas (relaciones, DAX) | El jefe ve las respuestas sin saber SQL |
-| 7 | Conclusiones y recomendaciones en el README | Alguien ajeno entiende qué encontré y qué recomiendo |
+| 0 | Problema y fases ✅ | Preguntas y plan en `docs/phase-0.md` |
+| 1 | 🟢 Tablas con PK/FK, carga de los 9 CSV, **limpieza documentada** (nulos, categorías en portugués, duplicados) · 🔵 backup/restore, usuario de solo lectura | Los conteos cuadran, las FK no fallan y cada limpieza tiene su porqué |
+| 2 | 🟢 Vistas con CTE y funciones de ventana, **estadística descriptiva** (media, mediana, comparar grupos), **KPIs comerciales** (ticket promedio, crecimiento mes a mes) · 🔵 pronóstico simple, 1 índice con plan de ejecución | Cada pregunta tiene su vista + respuesta en una frase |
+| 3 | 🔵 Procedimientos con parámetros y `TRY/CATCH`, 1 función (`CREATE FUNCTION`), 1 trigger | Reporte por fechas o estado con `EXEC`; puedo explicar procedimiento vs. función vs. trigger |
+| 4 | 🟢 Excel conectado a las vistas: Power Query, tablas dinámicas, BUSCARX, fórmulas, **ventas contra meta** (metas = supuesto documentado) · 🔵 Power Pivot | El gerente pulsa "Actualizar" y ve datos al día y el % de cumplimiento |
+| 5 | 🔵 Python: conexión con `pyodbc` + pandas (`read_sql`, `to_excel`) que genera el reporte | Un solo comando produce el reporte |
+| 6 | 🟢 Power BI conectado a las vistas: relaciones, DAX, KPIs, meta | El jefe ve las respuestas sin saber SQL |
+| 7 | 🟢 Conclusiones en el README + **presentación ejecutiva** de 5 a 7 slides en PDF | Alguien ajeno entiende qué encontré y qué recomiendo |
+
+**Orden de estudio si hay prisa:** 1, 2, 4, 6, 7 primero; 3 y 5 después.
 
 ### Estructura del repo
 
@@ -104,6 +110,7 @@ Tarjetas en inglés, como conocimiento general (no atado al proyecto), con tag `
 sql/        # 01-tables.sql, 02-views.sql, 03-procedures.sql
 excel/      # report.xlsx
 python/     # script de automatización del reporte
+presentation/ # presentación ejecutiva (PDF)
 powerbi/    # dashboard.pbix + capturas
 docs/       # phase-N.md, troubleshooting/
 data/       # CSV de Kaggle (ignorado por git)

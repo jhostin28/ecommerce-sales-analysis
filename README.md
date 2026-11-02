@@ -4,12 +4,12 @@ Business analysis of a Brazilian e-commerce marketplace using the public [Olist 
 
 The goal is not to explore data, but to answer concrete business questions a manager would ask, and turn the answers into decisions.
 
-**One pipeline, end to end:** raw CSV → SQL Server (tables, views, stored procedures) → Excel report, automated with Python → Power BI dashboard → conclusions for a manager.
+**One pipeline, end to end:** raw CSV → SQL Server (cleaning, views, stored procedures) → Excel report, automated with Python → Power BI dashboard → executive presentation with recommendations.
 
 | If you're hiring for... | Look at |
 |---|---|
-| **Database roles** (DB Developer, Analista Programador) | [`sql/`](sql/): schema with keys, views, stored procedures; [`python/`](python/): report automation |
-| **Data Analyst / BI roles** | [`excel/`](excel/), [`powerbi/`](powerbi/) and the [Conclusions](#conclusions) |
+| **Database roles** (DB Developer, Analista Programador) | [`sql/`](sql/): schema with keys, views, stored procedures, functions, triggers, indexing, backup; [`python/`](python/): report automation |
+| **Data Analyst / BI roles** | [`excel/`](excel/), [`powerbi/`](powerbi/), [`presentation/`](presentation/) and the [Conclusions](#conclusions) |
 
 ## Business questions
 
@@ -21,26 +21,26 @@ The goal is not to explore data, but to answer concrete business questions a man
 
 ## Stack
 
-- **SQL Server** (T-SQL) + **SSMS**: data model, loading, views and stored procedures
-- **Excel**: refreshable report connected to the SQL Server views (Power Query, pivot tables, formulas)
-- **Python**: automation that runs a stored procedure and builds the Excel report (`pyodbc`, `openpyxl`)
-- **Power BI**: dashboard connected to the SQL Server views (relationships, DAX measures)
+- **SQL Server** (T-SQL) + **SSMS**: data model, cleaning, views, stored procedures, functions, triggers
+- **Excel**: refreshable report connected to the views (Power Query, pivot tables, Power Pivot, sales vs. target)
+- **Python**: `pyodbc` + pandas (`read_sql`, `to_excel`) to automate the Excel report
+- **Power BI**: dashboard connected to the views (relationships, DAX, KPIs)
 
 ## Phases
 
 | Phase | Description | Status |
 |---|---|---|
 | 0 | Problem definition and project phases | ✅ Done |
-| 1 | SQL Server database: tables with keys, load and validate the 9 CSV files | ❌ To do |
-| 2 | One T-SQL view per business question (CTEs, window functions) | ❌ To do |
-| 3 | Stored procedures with parameters and error handling | ❌ To do |
-| 4 | Excel report connected to the views | ❌ To do |
+| 1 | SQL Server database: tables with keys, load, documented data cleaning, backup | ❌ To do |
+| 2 | One view per question: CTEs, window functions, descriptive statistics, sales KPIs, simple forecast | ❌ To do |
+| 3 | Stored procedures with error handling, a function and a trigger | ❌ To do |
+| 4 | Excel report connected to the views, with sales vs. target | ❌ To do |
 | 5 | Python automation of the Excel report | ❌ To do |
 | 6 | Power BI dashboard connected to the views | ❌ To do |
-| 7 | Conclusions and recommendations | ❌ To do |
+| 7 | Conclusions and executive presentation | ❌ To do |
 
 Details for each phase are in [`docs/`](docs/).
 
 ## Conclusions
 
-_Coming in phase 6._
+_Coming in phase 7._
