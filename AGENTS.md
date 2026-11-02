@@ -69,11 +69,13 @@ Tarjetas en inglés, como conocimiento general (no atado al proyecto), con tag `
 
 - **Qué es:** análisis de ventas de un e-commerce con el dataset público de Olist (Brasil, 2016-2018, 9 CSV en Kaggle).
 - **Vacantes que cubre:** Data Analyst Jr, BI Analyst, Analista Programador, Desarrollador de BD.
-- **Stack:** SQL Server (T-SQL, vistas, procedimientos almacenados), SSMS, Excel (conectado a SQL Server), Power BI (relaciones y DAX).
+- **Stack:** SQL Server (T-SQL, vistas, procedimientos almacenados), SSMS, Excel avanzado (Power Query, tablas dinámicas, conectado a SQL Server), Python (automatización con `pyodbc` + `openpyxl`, sin pandas), Power BI (relaciones y DAX).
+- **Base del stack:** un analista de datos de un banco en RD dijo que usan Python, SQL (consultas avanzadas), Excel avanzado, Power BI, SaaS corporativo y un software propietario ("Aspec", no identificado). En el banco, Python se usa para automatizar: ejecutar SQL y generar reportes, no pandas.
 - **Por qué SQL Server:** bancos y gobierno en RD usan SQL Server + Power BI.
 - **Un solo repo, una sola historia:** desarrollador de BD (tablas, vistas, procedimientos) → analista (Excel, Power BI, conclusiones) → jefe (decisión). Cada reclutador va a su carpeta: `sql/` para vacantes de BD; `excel/`, `powerbi/` y conclusiones para Data Analyst.
 - **Diferencia con backend:** aquí se resuelve un problema de negocio. Flujo: **pregunta → dato → decisión**.
-- **Excel:** solo lo esencial que piden las vacantes (tablas dinámicas, BUSCARX, SUMAR.SI.CONJUNTO, CONTAR.SI.CONJUNTO, SI, filtros, formato condicional, gráficos). En entrevistas se prueba en vivo.
+- **Excel avanzado:** Power Query, tablas dinámicas, BUSCARX, fórmulas anidadas (SI, SUMAR.SI.CONJUNTO, CONTAR.SI.CONJUNTO), formato condicional, gráficos. En entrevistas se prueba en vivo.
+- **SQL avanzado:** las vistas usan CTE (`WITH`), subconsultas y funciones de ventana (`ROW_NUMBER`, `LAG`), no solo `SELECT` simples.
 
 ### Preguntas de negocio (fase 0)
 
@@ -89,17 +91,19 @@ Tarjetas en inglés, como conocimiento general (no atado al proyecto), con tag `
 |---|---|---|
 | 0 | Problema y fases | Preguntas y plan en `docs/phase-0.md` |
 | 1 | Base de datos en SQL Server: tablas con PK/FK, carga de los 9 CSV, validación | Los conteos de filas cuadran con los CSV y las FK no fallan |
-| 2 | Una vista T-SQL por pregunta de negocio | Cada pregunta tiene su vista + respuesta en una frase |
+| 2 | Una vista T-SQL por pregunta (CTE, funciones de ventana) | Cada pregunta tiene su vista + respuesta en una frase |
 | 3 | Procedimientos almacenados con parámetros y `TRY/CATCH` | Se puede pedir un reporte por rango de fechas o estado con `EXEC` |
-| 4 | Reporte en Excel conectado a las vistas (tablas dinámicas, fórmulas) | El gerente abre el Excel, pulsa "Actualizar" y ve datos al día |
-| 5 | Dashboard en Power BI conectado a las vistas (relaciones, DAX) | El jefe ve las respuestas sin saber SQL |
-| 6 | Conclusiones y recomendaciones en el README | Alguien ajeno entiende qué encontré y qué recomiendo |
+| 4 | Reporte en Excel avanzado conectado a las vistas (Power Query, tablas dinámicas, fórmulas) | El gerente abre el Excel, pulsa "Actualizar" y ve datos al día |
+| 5 | Automatización con Python: script que ejecuta un procedimiento y genera el reporte en Excel | Un solo comando produce el reporte sin abrir SSMS ni Excel |
+| 6 | Dashboard en Power BI conectado a las vistas (relaciones, DAX) | El jefe ve las respuestas sin saber SQL |
+| 7 | Conclusiones y recomendaciones en el README | Alguien ajeno entiende qué encontré y qué recomiendo |
 
 ### Estructura del repo
 
 ```
 sql/        # 01-tables.sql, 02-views.sql, 03-procedures.sql
 excel/      # report.xlsx
+python/     # script de automatización del reporte
 powerbi/    # dashboard.pbix + capturas
 docs/       # phase-N.md, troubleshooting/
 data/       # CSV de Kaggle (ignorado por git)

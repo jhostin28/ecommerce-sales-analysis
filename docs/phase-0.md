@@ -26,7 +26,9 @@ Questions 1–4 describe **what** happens. Question 5 looks for **why**, which t
 - **SQL Server instead of PostgreSQL.** Banks and government in the Dominican Republic use SQL Server + Power BI. The same project covers Data Analyst roles (dashboard, conclusions) and Database Developer roles (T-SQL, views, stored procedures).
 - **One repository, not two.** In a real company this is one chain: the database developer builds tables, views and procedures; the analyst builds reports and conclusions; the manager decides. The README points each type of recruiter to their part.
 - **Excel connected to SQL Server.** Managers in banks and offices live in Excel. A refreshable Excel report on top of the views is realistic, and covers the Excel essentials Data Analyst roles ask for.
-- **Business logic lives in the database.** Each question is answered by a view; Excel and Power BI only read the views. If the logic changes, it changes in one place.
+- **Python for automation, not exploration.** In banks, Python is often used to run SQL and produce recurring reports automatically (`pyodbc`, `openpyxl`), not for pandas analysis. Phase 5 does exactly that.
+- **Stack validated with a real data analyst** at a Dominican bank: Python, advanced SQL, advanced Excel, Power BI, corporate SaaS.
+- **Business logic lives in the database.** Each question is answered by a view; Excel, Python and Power BI only read the views and procedures. If the logic changes, it changes in one place.
 - **Raw CSV files are not committed.** They are downloaded from Kaggle into `data/` (ignored by git). SQL scripts are committed.
 
 ## Phases
@@ -35,8 +37,9 @@ Questions 1–4 describe **what** happens. Question 5 looks for **why**, which t
 |---|---|---|
 | 0 | Problem and phases | This document exists |
 | 1 | SQL Server tables with PK/FK, load the 9 CSV files, validate | Row counts match the CSV files and foreign keys hold |
-| 2 | One view per business question | Each question has a view and a one-sentence answer |
+| 2 | One view per business question (CTEs, window functions) | Each question has a view and a one-sentence answer |
 | 3 | Stored procedures with parameters and `TRY/CATCH` | Reports by date range or state run with `EXEC` |
-| 4 | Excel report connected to the views | A manager opens the file, clicks Refresh and sees current data |
-| 5 | Power BI dashboard on top of the views | A manager sees the answers without knowing SQL |
-| 6 | Conclusions and recommendations | Someone outside the project understands the findings |
+| 4 | Excel report connected to the views (Power Query, pivot tables) | A manager opens the file, clicks Refresh and sees current data |
+| 5 | Python script that runs a procedure and builds the Excel report | One command produces the report without opening SSMS or Excel |
+| 6 | Power BI dashboard on top of the views | A manager sees the answers without knowing SQL |
+| 7 | Conclusions and recommendations | Someone outside the project understands the findings |
