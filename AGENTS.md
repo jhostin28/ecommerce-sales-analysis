@@ -50,6 +50,13 @@ AGENTS.md                         # Copia de estas instrucciones + contexto del 
 Mazo "Backend" con subdecks (API, Auth, CI, Data Modeling, Docker, JavaScript, SQL, Testing).
 Tarjetas en inglés, como conocimiento general (no atado al proyecto), con tag `<proyecto>::phaseN`.
 
+## Cambio de chat
+
+- **Un chat por bloque, no por fase.** Una fase se divide en bloques pequeños (ej. fase 1: diseñar tablas → cargar CSV → limpieza → backup/usuario).
+- **Al terminar un bloque:** guardar el resultado (commit o doc privado del proyecto de Claude), avisarme "⚠️ Buen momento para cambiar de chat" y darme el prompt para el siguiente.
+- **Si el chat pasa de ~40 mensajes o se alarga a mitad de bloque:** avisarme antes de seguir, guardar dónde quedamos y darme el prompt para continuar.
+- El contexto vive en el repo y los docs, no en el chat.
+
 ## Git
 
 - Si estoy en la PC, yo hago los commits y el push (tú me das el código o texto).
