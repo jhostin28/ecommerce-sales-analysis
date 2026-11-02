@@ -1,0 +1,7 @@
+# Raw Kaggle data: downloaded locally, not committed
+data/
+*.csv
+
+# Office / Power BI temp files
+~$*
+*.tmp
